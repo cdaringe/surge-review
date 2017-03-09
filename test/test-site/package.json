@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "@semantic-release/condition-codeship": "^1.1.0",
+    "@semantic-release/release-notes-generator": "^2.0.0",
+    "semantic-release": "^6.3.2"
+  }
+}
