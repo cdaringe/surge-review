@@ -19,6 +19,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "** DANGER __ TEST RUN ***",
+      "program": "${workspaceRoot}/test/test-run.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "surge token",
       "program": "${workspaceRoot}/node_modules/.bin/surge",
       "args": [

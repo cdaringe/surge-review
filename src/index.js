@@ -4,14 +4,12 @@ var cp = require('child_process')
 var path = require('path')
 var GitHub = require('github')
 var wf = require('run-waterfall')
-
-var config = require('./config')
+var rando = require('./rando')
 
 var surgeBin = path.resolve(require.resolve('surge'), '..', 'cli.js')
 
 var sr = {
   // props
-  _prNumber: null,
   gh: null,
 
   // methods
@@ -25,26 +23,18 @@ var sr = {
     if (!req.SURGE_TOKEN) return cb(new Error('missing SURGE_TOKEN'))
     if (!req.GH_TOKEN) return cb(new Error('missing GH_TOKEN'))
     if (!req.GH_PULL_BRANCH && !req.GH_PULL_REQUEST) return cb(new Error('a GH_PULL_BRANCH or a GH_PULL_REQUEST must be provided'))
-    cb()
+    cb(null, req)
   },
   deploy: function (req, cb) {
-    var surgeURI = 'surge-pr-' + req.BUILD_ID + '.surge.sh'
+    var surgeURI = 'surgereview' + (req.BUILD_ID || rando()) + '.surge.sh'
     req.surgeURI = surgeURI
-    var surge = cp.spawn(
-      surgeBin,
-      [
-        '--domain', surgeURI,
-        '--project', req.PUBLISH_DIR
-      ],
-      { stdio: 'inherit' }
-    )
+    var args = [surgeBin, ['.', surgeURI], { stdio: 'inherit', cwd: req.PUBLISH_DIR }]
+    console.log(args)
+    var surge = cp.spawn.apply(cp, args)
     surge.on('exit', function (code) {
       if (code) process.exit(code)
       cb(null, req)
     })
-  },
-  getConfig: function (cb) {
-    return cb(null, config)
   },
   getGH: function (req) {
     if (this.gh) return this.gh
@@ -63,32 +53,40 @@ var sr = {
   },
   getPRNumber: function (req, cb) {
     if (req.GH_PULL_REQUEST) return cb(null, req)
-    if (!req.GH_PULL_BRANCH) throw new Error('cannot identify a PR to post to')
-    var gh = this.getGH()
+    if (!req.GH_PULL_BRANCH) return cb(new Error('cannot identify a PR to post to'))
+    var gh = this.getGH(req)
     gh.pullRequests.getAll({
       owner: req.GH_OWNER,
       repo: req.GH_PROJECT
     }, function (err, res) {
       if (err) return cb(err)
-      debugger
-      console.log('no')
+      for (var j in res.data) {
+        var pr = res.data[j]
+        if (pr.head.ref.trim() === req.GH_PULL_BRANCH.trim()) {
+          // req.GH_PULL_REQUEST = parseInt(pr.html_url.match(/\d+$/)[0], 10) // eslint-disable-line
+          req.GH_PULL_REQUEST = pr.number
+          return cb(null, req)
+        }
+      }
+      return cb(new Error('unable to find PR number for branch: ' + req.GH_PULL_BRANCH))
     })
   },
   postPRUpdate: function (req, cb) {
+    var surgeURI = req.surgeURI
     var gh = this.getGH(req)
-    gh.pullRequests.createComment({
+    gh.issues.createComment({
       owner: req.GH_OWNER,
       repo: req.GH_PROJECT,
-      number: this._prNumber,
+      number: req.GH_PULL_REQUEST,
       body: [
-        'Woohoo, new surge deploymet available for viewing!',
-        this._surgeURI
+        'Woohoo! new surge deployment available for viewing! :tada:',
+        '[' + surgeURI + '](http://' + surgeURI + ')'
       ].join(' ')
     }, cb)
   },
-  run: function (cb) {
+  run: function (config, cb) {
     wf([
-      this.getConfig,
+      function injectConfig (cb) { cb(null, config) },
       this.check,
       this.deploy,
       this.getPRNumber,

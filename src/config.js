@@ -19,8 +19,8 @@ module.exports = {
   GH_PULL_REQUEST: null,
   GH_PULL_BRANCH: null,
   GH_OWNER: owner || env.GH_OWNER,
-  GH_TOKEN: null,
+  GH_TOKEN: env.GH_TOKEN,
   GHE: null,
   PUBLISH_DIR: process.cwd(),
-  SURGE_TOKEN: null
+  SURGE_TOKEN: env.SURGE_TOKEN
 }

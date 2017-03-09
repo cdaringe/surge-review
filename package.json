@@ -1,6 +1,6 @@
 {
   "name": "surge-review",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Deploy a static site to surge from CI & post the site to your pull request automatically :tada:",
   "main": "src/index.js",
   "bin": "bin/surge-review.js",
@@ -16,6 +16,8 @@
     "surge": "^0.18.0"
   },
   "devDependencies": {
+    "sinon": "^1.17.7",
+    "standard": "^9.0.1",
     "tape": "^4.6.3"
   }
 }

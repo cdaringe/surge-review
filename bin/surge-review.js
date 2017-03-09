@@ -11,7 +11,7 @@ var path = require('path')
 if (argv.p || argv['publish-dir']) config.PUBLISH_DIR = path.resolve(process.cwd(), argv.p || argv['publish-dir'])
 if (argv.b || argv['pr-branch']) config.GH_PULL_BRANCH = path.resolve(process.cwd(), argv.b || argv['pr-branch'])
 
-sr.run(function (err) {
+sr.run(config, function (err) {
   if (err) throw err
   console.log('ok')
 })
