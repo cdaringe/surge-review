@@ -5,22 +5,22 @@
 
 [ ![Codeship Status for cdaringe/surge-review](https://app.codeship.com/projects/f3909050-e73f-0134-cbdd-5eb6ba68ea7b/status?branch=master)](https://app.codeship.com/projects/207094) ![](https://img.shields.io/badge/standardjs-%E2%9C%93-brightgreen.svg) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-## usage
+## install
 
 `npm install --save-dev surge-review`
 
+## usage
+
 `$ surge-review`
 
-see `surge-review -h` for common options.
+see `surge-review -h` for common options.  generally, you will setup your CI server for your project to:
 
-genrally, you will setup your CI server for your project to:
-
-- export github & surge tokens
+- export github & surge tokens (`SURGE_TOKEN` & `GH_TOKEN`)
 - install this package
 - build your website
-- run `surge-review` to deploy to surge & post a comment to github
+- run `surge-review` to deploy to `surge.sh` & post a comment to github
 
-@notes:
+### support
 
 - gitlab is not yet supported.  the api calls used are short and sweet. open a PR if you'd like to add it!
 - github enterprise _is_ supported. see config options
