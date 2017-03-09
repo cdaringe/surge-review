@@ -1,6 +1,7 @@
 # surge-review :zap:
 
-Deploy a static site to [surge.sh](http://surge.sh) from your CI &amp; post the link to your new site into your pull request automatically :tada:
+- Deploys a static site to [surge.sh](http://surge.sh)
+- Posts the new site URL into your pull request :tada:
 
 ## usage
 
