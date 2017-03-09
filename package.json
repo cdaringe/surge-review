@@ -27,5 +27,11 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "test": "node test/",
     "lint": "standard"
+  },
+  "release": {
+    "generateNotes": "./node_modules/@semantic-release/release-notes-generator",
+    "verifyConditions": [
+      "./node_modules/@semantic-release/condition-codeship"
+    ]
   }
 }
