@@ -16,7 +16,8 @@ var mockGH = {
             head: {
               ref: 'test'
             },
-            html_url: 'github.com/bha/bjbia/1'
+            html_url: 'github.com/bha/bjbia/1',
+            number: 1
           }
         ]
       })

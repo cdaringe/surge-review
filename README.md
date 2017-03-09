@@ -3,6 +3,8 @@
 - Deploys a static site to [surge.sh](http://surge.sh)
 - Posts the new site URL into your pull request :tada:
 
+[ ![Codeship Status for cdaringe/surge-review](https://app.codeship.com/projects/f3909050-e73f-0134-cbdd-5eb6ba68ea7b/status?branch=master)](https://app.codeship.com/projects/207094) ![](https://img.shields.io/badge/standardjs-%E2%9C%93-brightgreen.svg) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
 ## usage
 
 `npm install --save-dev surge-review`

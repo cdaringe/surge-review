@@ -22,5 +22,10 @@
     "sinon": "^1.17.7",
     "standard": "^9.0.1",
     "tape": "^4.6.3"
+  },
+  "scripts": {
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "test": "node test/",
+    "lint": "standard"
   }
 }
