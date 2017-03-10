@@ -33,7 +33,7 @@ see `surge-review -h` for common options.  generally, you will setup your CI ser
 - `GH_TOKEN`
 - `GH_PROJECT`
 - `GH_OWNER`
-  - `GH_PROJECT_OWNER`, such as 'cdaringe/surge-review' can be used in exchange for the above two
+  - `GH_PROJECT_OWNER`, such as 'cdaringe/surge-review' can be used in exchange for the above two. for instance, codeship offers up `CI_REPO_NAME`, which === `'cdaringe/surge-review'`, so `GH_PROJECT_OWNER=$CI_REPO_NAME` works
 - `GH_PULL_REQUEST`
   - the _number_ of your PR.  this is the number at the end of your PR URL
   - this isn't strictly required--`surge-review` will try to search for the PR number **iff* you also provide a `GH_PULL_BRANCH`
