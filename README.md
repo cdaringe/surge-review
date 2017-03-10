@@ -15,7 +15,7 @@
 
 see `surge-review -h` for common options.  generally, you will setup your CI server for your project to:
 
-- export github & surge tokens (`SURGE_TOKEN` & `GH_TOKEN`)
+- export github & surge tokens (`SURGE_LOGIN`, `SURGE_TOKEN`, & `GH_TOKEN`)
 - install this package
 - build your website
 - run `surge-review` to deploy to `surge.sh` & post a comment to github
@@ -29,10 +29,11 @@ see `surge-review -h` for common options.  generally, you will setup your CI ser
 
 ### required
 
-- `SURGE_TOKEN`
-- `GH_TOKEN`
-- `GH_PROJECT`
-- `GH_OWNER`
+- `SURGE_LOGIN`, email address registered with surge
+- `SURGE_TOKEN`, token registered with surge
+- `GH_TOKEN`, [github oauth token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
+- `GH_PROJECT`, your CI should provide this.
+- `GH_OWNER`, your CI should provide this.
   - `GH_PROJECT_OWNER`, such as 'cdaringe/surge-review' can be used in exchange for the above two. for instance, codeship offers up `CI_REPO_NAME`, which === `'cdaringe/surge-review'`, so `GH_PROJECT_OWNER=$CI_REPO_NAME` works
 - `GH_PULL_REQUEST`
   - the _number_ of your PR.  this is the number at the end of your PR URL
