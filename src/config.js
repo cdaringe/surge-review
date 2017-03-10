@@ -10,17 +10,17 @@ if (env.GH_PROJECT_OWNER) {
 }
 
 module.exports = {
-  BUILD_ID: null,
-  DEBUG: null,
-  GH_DOMAIN: null,
-  GH_FOLLOW_REDIRECTS: null,
+  BUILD_ID: env.BUILD_ID,
+  DEBUG: env.DEBUG,
+  GH_DOMAIN: env.GH_DOMAIN,
+  GH_FOLLOW_REDIRECTS: env.GH_FOLLOW_REDIRECTS,
   GH_PROJECT: project || env.GH_PROJECT,
-  GH_PROTOCOL: null,
-  GH_PULL_REQUEST: null,
-  GH_PULL_BRANCH: null,
+  GH_PROTOCOL: env.GH_PROTOCOL,
+  GH_PULL_REQUEST: env.GH_PULL_REQUEST,
+  GH_PULL_BRANCH: env.GH_PULL_BRANCH,
   GH_OWNER: owner || env.GH_OWNER,
   GH_TOKEN: env.GH_TOKEN,
-  GHE: null,
+  GHE: env.GHE,
   PUBLISH_DIR: process.cwd(),
   SURGE_TOKEN: env.SURGE_TOKEN
 }
