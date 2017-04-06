@@ -41,7 +41,7 @@ see `surge-review -h` for common options.  generally, you will setup your CI ser
 
 ### optional
 
-- `BUILD_ID` your <subdomain>.surge.sh is random by default. add this to make your subdomain `s`urgereview`${BUILD_ID}`
+- `BUILD_ID` your `<subdomain>`.surge.sh is random by default. add this to make your subdomain `s`urgereview`${BUILD_ID}`
 - `GHE` set to true if publishing to GitHub Enterprise
 - `GH_DOMAIN` default: github.com
 - `GH_PROTOCOL` default: 'https'

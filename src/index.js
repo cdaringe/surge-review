@@ -28,7 +28,7 @@ var sr = {
   deploy: function (req, cb) {
     var surgeURI = 'surgereview' + (req.BUILD_ID || rando()) + '.surge.sh'
     req.surgeURI = surgeURI
-    var args = [surgeBin, ['.', surgeURI], { stdio: 'inherit', cwd: req.PUBLISH_DIR }]
+    var args = ['node', [surgeBin, '.', surgeURI], { stdio: 'inherit', cwd: req.PUBLISH_DIR }]
     console.log(args)
     var surge = cp.spawn.apply(cp, args)
     surge.on('exit', function (code) {
