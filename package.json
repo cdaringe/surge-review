@@ -8,7 +8,7 @@
   "author": "cdaringe",
   "license": "MIT",
   "dependencies": {
-    "github": "^9.1.0",
+    "github": "^9.3.1",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
     "perish": "^1.0.1",
@@ -18,10 +18,10 @@
   "devDependencies": {
     "@semantic-release/condition-codeship": "^1.1.0",
     "@semantic-release/release-notes-generator": "^2.0.0",
-    "semantic-release": "^6.3.2",
+    "semantic-release": "^6.3.6",
     "sinon": "^1.17.7",
-    "standard": "^9.0.1",
-    "tape": "^4.6.3"
+    "standard": "^9.0.2",
+    "tape": "^4.8.0"
   },
   "scripts": {
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",

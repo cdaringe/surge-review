@@ -22,6 +22,11 @@ var mockGH = {
         ]
       })
     }
+  },
+  issues: {
+    createComment (args, cb) {
+      return cb(null, args)
+    }
   }
 }
 
@@ -33,14 +38,38 @@ tape('find pr', t => {
     GH_PROJECT: 'surge-review',
     GH_PULL_BRANCH: 'test'
   })
-  var stub = sinon.stub(sr, 'getGH', (req) => mockGH)
+  var stubGetGitHub = sinon.stub(sr, 'getGH', (req) => mockGH)
+  var stubDeploy = sinon.stub(sr, 'deploy', (req, cb) => cb(null, req))
   wf([
     cb => sr.getPRNumber(conf, cb)
   ], function (err, res) {
     if (err) return t.end(err)
     t.equal(res.GH_PULL_REQUEST, 1)
-    t.ok(stub.calledOnce)
-    stub.restore()
+    stubGetGitHub.restore()
+    stubDeploy.restore()
+    t.ok(stubGetGitHub.calledOnce)
+    t.end()
+  })
+})
+
+tape('run with dir & pull-request', t => {
+  t.plan(2)
+  sinon.stub()
+  var conf = Object.assign({}, defaultConfig, {
+    SURGE_TOKEN: 'test-surge-token',
+    GH_TOKEN: 'test-gh-token',
+    GH_OWNER: 'cdaringe',
+    GH_PROJECT: 'surge-review',
+    GH_PULL_REQUEST: '25'
+  })
+  var stubDeploy = sinon.stub(sr, 'deploy', (req, cb) => cb(null, req))
+  var stubGetGitHub = sinon.stub(sr, 'getGH', (req) => mockGH)
+  sr.run(conf, function (err, res) {
+    if (err) return t.end(err)
+    t.equal(res.number, '25')
+    stubGetGitHub.restore()
+    stubDeploy.restore()
+    t.ok(stubGetGitHub.calledOnce)
     t.end()
   })
 })
