@@ -1,5 +1,7 @@
 # surge-review :zap:
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/cdaringe/surge-review.svg)](https://greenkeeper.io/)
+
 - Deploys a static site to [surge.sh](http://surge.sh)
 - Adds a comment to your pull request with the new site URL :tada:
 
