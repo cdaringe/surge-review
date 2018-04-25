@@ -38,8 +38,8 @@ tape('find pr', t => {
     GH_PROJECT: 'surge-review',
     GH_PULL_BRANCH: 'test'
   })
-  var stubGetGitHub = sinon.stub(sr, 'getGH', (req) => mockGH)
-  var stubDeploy = sinon.stub(sr, 'deploy', (req, cb) => cb(null, req))
+  var stubGetGitHub = sinon.stub(sr, 'getGH').callsFake(req => mockGH)
+  var stubDeploy = sinon.stub(sr, 'deploy').callsFake((req, cb) => cb(null, req))
   wf([
     cb => sr.getPRNumber(conf, cb)
   ], function (err, res) {
@@ -62,8 +62,8 @@ tape('run with dir & pull-request', t => {
     GH_PROJECT: 'surge-review',
     GH_PULL_REQUEST: '25'
   })
-  var stubDeploy = sinon.stub(sr, 'deploy', (req, cb) => cb(null, req))
-  var stubGetGitHub = sinon.stub(sr, 'getGH', (req) => mockGH)
+  var stubDeploy = sinon.stub(sr, 'deploy').callsFake((req, cb) => cb(null, req))
+  var stubGetGitHub = sinon.stub(sr, 'getGH').callsFake((req) => mockGH)
   sr.run(conf, function (err, res) {
     if (err) return t.end(err)
     t.equal(res.number, '25')
