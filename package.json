@@ -19,7 +19,7 @@
     "@semantic-release/condition-codeship": "^1.1.0",
     "@semantic-release/release-notes-generator": "^6.0.3",
     "semantic-release": "^15.1.8",
-    "sinon": "^4.1.4",
+    "sinon": "^5.0.1",
     "standard": "^10.0.2",
     "tape": "^4.8.0"
   },
