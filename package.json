@@ -16,12 +16,12 @@
     "surge": "^0.21.0"
   },
   "devDependencies": {
-    "@semantic-release/condition-codeship": "^1.1.0",
-    "@semantic-release/release-notes-generator": "^7.0.0",
-    "semantic-release": "^15.12.4",
-    "sinon": "^7.2.3",
-    "standard": "^14.0.0",
-    "tape": "^4.8.0"
+    "@semantic-release/condition-codeship": "1.1.0",
+    "@semantic-release/release-notes-generator": "7.1.4",
+    "semantic-release": "15.13.1",
+    "sinon": "7.2.3",
+    "standard": "14.3.1",
+    "tape": "4.9.1"
   },
   "scripts": {
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
