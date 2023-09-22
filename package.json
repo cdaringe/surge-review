@@ -21,7 +21,7 @@
     "semantic-release": "15.13.1",
     "sinon": "7.2.3",
     "standard": "14.3.1",
-    "tape": "4.9.1"
+    "tape": "4.17.0"
   },
   "scripts": {
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
